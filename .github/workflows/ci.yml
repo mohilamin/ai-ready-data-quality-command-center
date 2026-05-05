@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Lint
+        run: ruff check .
+      - name: Generate data
+        run: python -m src.data_generation.generate_synthetic_data
+      - name: Run pipeline
+        run: python -m src.pipeline.run_all
+      - name: Test
+        run: pytest

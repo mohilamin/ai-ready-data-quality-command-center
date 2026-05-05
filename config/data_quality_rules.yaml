@@ -1,0 +1,38 @@
+customers:
+  business_key: customer_id
+  required_fields: [customer_id, full_name, email, created_at, customer_status]
+  expected_columns: [customer_id, full_name, email, phone, customer_status, created_at, region]
+  pii_fields: [email, phone]
+accounts:
+  business_key: account_id
+  required_fields: [account_id, customer_id, account_type, account_status, opened_at, balance]
+  expected_columns: [account_id, customer_id, account_type, account_status, opened_at, balance]
+  foreign_keys:
+    customer_id: customers.customer_id
+  non_negative_fields: [balance]
+transactions:
+  business_key: transaction_id
+  required_fields: [transaction_id, account_id, product_code, transaction_date, amount]
+  expected_columns: [transaction_id, account_id, product_code, transaction_date, amount, currency, channel]
+  foreign_keys:
+    account_id: accounts.account_id
+    product_code: product_reference.product_code
+  outlier_fields:
+    amount:
+      absolute_max: 50000
+product_reference:
+  business_key: product_code
+  required_fields: [product_code, product_name, product_family, active_flag]
+  expected_columns: [product_code, product_name, product_family, active_flag]
+employee_access:
+  business_key: access_event_id
+  required_fields: [access_event_id, employee_id, table_name, access_level, access_timestamp, authorized_flag]
+  expected_columns: [access_event_id, employee_id, table_name, access_level, access_timestamp, authorized_flag]
+source_system_loads:
+  business_key: load_id
+  required_fields: [load_id, source_system, table_name, loaded_at, record_count, status]
+  expected_columns: [load_id, source_system, table_name, loaded_at, record_count, status]
+data_lineage_events:
+  business_key: lineage_event_id
+  required_fields: [lineage_event_id, source_table, target_table, transformation_name, event_timestamp]
+  expected_columns: [lineage_event_id, source_table, target_table, transformation_name, event_timestamp]

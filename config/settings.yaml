@@ -1,0 +1,27 @@
+project:
+  name: AI-Ready Data Quality Command Center
+  random_seed: 42
+  generation_base_datetime: "2026-05-05T12:00:00+00:00"
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  clean: data/clean
+  quarantine: data/quarantine
+  scorecards: data/scorecards
+  duckdb: data/processed/command_center.duckdb
+
+freshness_thresholds:
+  source_system_loads_max_age_hours: 24
+  transactions_max_age_days: 7
+  reference_data_max_age_days: 30
+
+scoring_weights:
+  completeness_score: 0.18
+  uniqueness_score: 0.12
+  freshness_score: 0.14
+  schema_stability_score: 0.12
+  referential_integrity_score: 0.16
+  anomaly_score: 0.10
+  pii_risk_score: 0.08
+  governance_score: 0.10

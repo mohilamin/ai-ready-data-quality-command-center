@@ -1,0 +1,179 @@
+{
+  "generated_at": "2026-05-05T12:00:00+00:00",
+  "random_seed": 42,
+  "datasets": {
+    "customers": 101,
+    "accounts": 130,
+    "transactions": 500,
+    "product_reference": 5,
+    "employee_access": 80,
+    "source_system_loads": 6,
+    "data_lineage_events": 30
+  },
+  "issues": [
+    {
+      "issue_id": "INJ-DUP-CUSTOMERS-001A",
+      "issue_type": "duplicate_customers",
+      "table_name": "customers",
+      "record_id": "CUST0003",
+      "column_name": "customer_id",
+      "description": "Original customer key participates in a deliberate duplicate."
+    },
+    {
+      "issue_id": "INJ-DUP-CUSTOMERS-001B",
+      "issue_type": "duplicate_customers",
+      "table_name": "customers",
+      "record_id": "CUST0003",
+      "column_name": "customer_id",
+      "description": "Copied customer key participates in a deliberate duplicate."
+    },
+    {
+      "issue_id": "INJ-MISSING-EMAIL-CUST0005",
+      "issue_type": "missing_customer_emails",
+      "table_name": "customers",
+      "record_id": "CUST0005",
+      "column_name": "email",
+      "description": "Customer email was intentionally removed."
+    },
+    {
+      "issue_id": "INJ-MISSING-EMAIL-CUST0020",
+      "issue_type": "missing_customer_emails",
+      "table_name": "customers",
+      "record_id": "CUST0020",
+      "column_name": "email",
+      "description": "Customer email was intentionally removed."
+    },
+    {
+      "issue_id": "INJ-MISSING-EMAIL-CUST0045",
+      "issue_type": "missing_customer_emails",
+      "table_name": "customers",
+      "record_id": "CUST0045",
+      "column_name": "email",
+      "description": "Customer email was intentionally removed."
+    },
+    {
+      "issue_id": "INJ-ACCOUNT-FK-ACCT00006",
+      "issue_type": "invalid_account_foreign_keys",
+      "table_name": "accounts",
+      "record_id": "ACCT00006",
+      "column_name": "customer_id",
+      "description": "Account references a customer_id that does not exist."
+    },
+    {
+      "issue_id": "INJ-ACCOUNT-FK-ACCT00037",
+      "issue_type": "invalid_account_foreign_keys",
+      "table_name": "accounts",
+      "record_id": "ACCT00037",
+      "column_name": "customer_id",
+      "description": "Account references a customer_id that does not exist."
+    },
+    {
+      "issue_id": "INJ-STALE-LOAD-LOAD0004",
+      "issue_type": "stale_source_loads",
+      "table_name": "source_system_loads",
+      "record_id": "LOAD0004",
+      "column_name": "loaded_at",
+      "description": "Source load timestamp exceeds the freshness SLA."
+    },
+    {
+      "issue_id": "INJ-STALE-LOAD-LOAD0005",
+      "issue_type": "stale_source_loads",
+      "table_name": "source_system_loads",
+      "record_id": "LOAD0005",
+      "column_name": "loaded_at",
+      "description": "Source load timestamp exceeds the freshness SLA."
+    },
+    {
+      "issue_id": "INJ-BAD-PRODUCT-TXN000013",
+      "issue_type": "invalid_product_codes",
+      "table_name": "transactions",
+      "record_id": "TXN000013",
+      "column_name": "product_code",
+      "description": "Transaction product_code is not in product_reference."
+    },
+    {
+      "issue_id": "INJ-BAD-PRODUCT-TXN000048",
+      "issue_type": "invalid_product_codes",
+      "table_name": "transactions",
+      "record_id": "TXN000048",
+      "column_name": "product_code",
+      "description": "Transaction product_code is not in product_reference."
+    },
+    {
+      "issue_id": "INJ-TXN-OUTLIER-TXN000022",
+      "issue_type": "outlier_transaction_amounts",
+      "table_name": "transactions",
+      "record_id": "TXN000022",
+      "column_name": "amount",
+      "description": "Transaction amount exceeds the configured outlier threshold."
+    },
+    {
+      "issue_id": "INJ-TXN-OUTLIER-TXN000089",
+      "issue_type": "outlier_transaction_amounts",
+      "table_name": "transactions",
+      "record_id": "TXN000089",
+      "column_name": "amount",
+      "description": "Transaction amount exceeds the configured outlier threshold."
+    },
+    {
+      "issue_id": "INJ-NEG-BALANCE-ACCT00009",
+      "issue_type": "negative_balances",
+      "table_name": "accounts",
+      "record_id": "ACCT00009",
+      "column_name": "balance",
+      "description": "Account balance is negative where non-negative balance is required."
+    },
+    {
+      "issue_id": "INJ-NEG-BALANCE-ACCT00029",
+      "issue_type": "negative_balances",
+      "table_name": "accounts",
+      "record_id": "ACCT00029",
+      "column_name": "balance",
+      "description": "Account balance is negative where non-negative balance is required."
+    },
+    {
+      "issue_id": "INJ-UNAUTH-ACCESS-ACCESS00004",
+      "issue_type": "unauthorized_employee_access",
+      "table_name": "employee_access",
+      "record_id": "ACCESS00004",
+      "column_name": "authorized_flag",
+      "description": "Employee access event is deliberately unauthorized."
+    },
+    {
+      "issue_id": "INJ-UNAUTH-ACCESS-ACCESS00017",
+      "issue_type": "unauthorized_employee_access",
+      "table_name": "employee_access",
+      "record_id": "ACCESS00017",
+      "column_name": "authorized_flag",
+      "description": "Employee access event is deliberately unauthorized."
+    },
+    {
+      "issue_id": "INJ-CLOSED-ACCOUNT-TXN-001",
+      "issue_type": "transactions_linked_to_closed_accounts",
+      "table_name": "transactions",
+      "record_id": "TXN000001",
+      "column_name": "account_id",
+      "description": "Transaction is linked to a deliberately closed account."
+    },
+    {
+      "issue_id": "INJ-SCHEMA-DRIFT-PRODUCT-001",
+      "issue_type": "schema_drift_detected",
+      "table_name": "product_reference",
+      "record_id": "TABLE",
+      "column_name": "risk_tier",
+      "description": "Unexpected risk_tier column simulates schema drift."
+    }
+  ],
+  "expected_issue_counts": {
+    "duplicate_customers": 2,
+    "invalid_account_foreign_keys": 2,
+    "invalid_product_codes": 2,
+    "missing_customer_emails": 3,
+    "negative_balances": 2,
+    "outlier_transaction_amounts": 2,
+    "schema_drift_detected": 1,
+    "stale_source_loads": 2,
+    "transactions_linked_to_closed_accounts": 1,
+    "unauthorized_employee_access": 2
+  }
+}
